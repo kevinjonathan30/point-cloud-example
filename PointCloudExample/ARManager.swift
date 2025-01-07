@@ -34,7 +34,7 @@ actor ARManager: NSObject, ARSessionDelegate, ObservableObject {
     
     @MainActor
     private func process(frame: ARFrame) async {
-        guard !isProcessing else { return }
+        guard !isProcessing && isCapturing else { return }
         
         isProcessing = true
         await pointCloud.process(frame: frame)
